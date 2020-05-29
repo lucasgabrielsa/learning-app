@@ -3,14 +3,7 @@ import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 const Card = (props) => {
   return (
-    <View style={styles.card}>
-      <Text>Select a number</Text>
-      <TextInput />
-      <View style={styles.buttonContainer}>
-        <Button title="Reset" onPress={() => {}} />
-        <Button title="Confirm" onPress={() => {}} />
-      </View>
-    </View>
+    <View style={{ ...styles.card, ...props.style }}>{props.children}</View>
   );
 };
 
@@ -27,12 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "space-between",
-    paddingHorizontal: 15,
   },
 });
 
