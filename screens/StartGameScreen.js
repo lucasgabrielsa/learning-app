@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    fontFamily: "open-sans",
     marginVertical: 10,
   },
   buttonContainer: {
