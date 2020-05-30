@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import React, { useState, useRef } from "react";
+import { View, Text, StyleSheet, Button, Alert } from "react-native";
 import NumberContainer from "../components/NumberContainer";
 import Card from "../components/Card";
 import Colors from "../constants/color";
@@ -7,6 +7,7 @@ import Colors from "../constants/color";
 const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
   max = Math.floor(max);
+
   const randomNumber = Math.floor(Math.random() * (max - min)) + min;
   if (randomNumber === exclude) {
     return generateRandomBetween(min, max, exclude);
@@ -20,6 +21,34 @@ const GameScreen = (props) => {
     generateRandomBetween(1, 100, props.userChoise)
   );
 
+  const currentLow = useRef(1);
+  const currentHigh = useRef(100);
+
+  const nextGuessHandler = (direction) => {
+    if (
+      (direction === "lower" && currentGuess < props.userChoise) ||
+      (direction === "greater" && currentGuess > props.userChoise)
+    ) {
+      Alert.alert("Don't lie!", "You know that this is wrong...", [
+        { text: "Sorry!", style: "cancel" },
+      ]);
+      return;
+    }
+
+    if (direction === "lower") {
+      currentHigh.current = currentGuess;
+    } else {
+      currentLow.current = currentGuess;
+    }
+    const nextNumber = generateRandomBetween(
+      currentLow.current,
+      currentHigh.current,
+      currentGuess
+    );
+
+    setCurrentGuess(nextNumber);
+  };
+
   return (
     <View style={styles.screen}>
       <Text>Opponent's Guess</Text>
@@ -27,10 +56,18 @@ const GameScreen = (props) => {
 
       <Card style={styles.buttonContainer}>
         <View style={styles.buttonStyle}>
-          <Button title="LOWER" color={Colors.primary} onPress={() => {}} />
+          <Button
+            title="LOWER"
+            color={Colors.primary}
+            onPress={nextGuessHandler.bind(this, "lower")}
+          />
         </View>
         <View style={styles.buttonStyle}>
-          <Button title="GREATER" color={Colors.primary} onPress={() => {}} />
+          <Button
+            title="GREATER"
+            color={Colors.primary}
+            onPress={nextGuessHandler.bind(this, "greater")}
+          />
         </View>
       </Card>
     </View>
