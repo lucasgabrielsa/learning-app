@@ -10,6 +10,7 @@ const BodyText = (props) => {
 const styles = StyleSheet.create({
   text: {
     fontFamily: "open-sans",
+    fontSize: 18,
   },
 });
 
