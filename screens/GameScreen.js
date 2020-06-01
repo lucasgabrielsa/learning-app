@@ -93,8 +93,7 @@ const GameScreen = (props) => {
         </View>
       </Card>
       <View style={styles.listView}>
-        <ScrollView style={styles.historicalContainer}>
-          <Text>Historical of the Guesses</Text>
+        <ScrollView contentContainerStyle={styles.list}>
           {pastGuesses.map((guess, index) =>
             renderListItem(guess, pastGuesses.length - index)
           )}
@@ -119,10 +118,6 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
     height: 80,
   },
-  historicalContainer: {
-    textAlign: "center",
-    fontFamily: "open-sans",
-  },
   listItem: {
     borderColor: "black",
     borderWidth: 1,
@@ -131,10 +126,16 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "space-around",
+    width: "60%",
   },
   listView: {
     width: "80%",
     flex: 1,
+  },
+  list: {
+    flexGrow: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
 });
 
