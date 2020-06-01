@@ -70,8 +70,6 @@ const GameScreen = (props) => {
     setCurrentGuess(nextNumber);
     setRounds((prevRounds) => prevRounds + 1);
     setPastGesses((currentGuesses) => [nextNumber, ...currentGuesses]);
-
-    console.log(pastGuesses);
   };
 
   return (
