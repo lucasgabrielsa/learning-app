@@ -140,15 +140,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "space-around",
-    width: "60%",
   },
   listView: {
-    width: "80%",
+    width: "60%",
     flex: 1,
   },
   list: {
     flexGrow: 1,
-    alignItems: "center",
     justifyContent: "flex-end",
   },
 });

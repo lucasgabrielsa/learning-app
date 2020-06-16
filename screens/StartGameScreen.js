@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Dimensions
 } from "react-native";
 import Card from "../components/Card";
 import Colors from "../constants/color";
@@ -108,8 +109,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputContainer: {
-    width: 300,
-    maxWidth: "80%",
+    width: '80%',
+    minWidth: 300,
+    maxWidth: '95%',
     alignItems: "center",
   },
   title: {
@@ -124,7 +126,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   buttonStyle: {
-    width: "45%",
+       width: "45%"
+    // width: Dimensions.get('window').width / 4
   },
   input: {
     width: 100,
